@@ -391,6 +391,9 @@ i[class*='van-type-'] {
     border-radius: 5px;
     margin-right: 17px;
 }
+.host-van-info{
+    flex-grow: 0.9;
+}
 
 .host-van-info h3 {
     font-size: 20px;
@@ -742,3 +745,16 @@ img.graph {
 }
 
 
+@media (max-width: 1500px) {
+    html,body{
+        padding-left: 5rem;
+        padding-right: 5rem;
+
+    }
+}
+
+@media (max-width: 800px) {
+    html,body{
+        padding: 0;
+    }
+}
