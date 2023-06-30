@@ -64,19 +64,6 @@ export default function Login() {
                 </button>
             </Form>
 
-            <form name="myForm" method="POST" data-netlify="true">
-                <input type="hidden" name="form-name" value="myForm" />
-                <label>
-                    Name:
-                    <input type="text" name="name" />
-                </label>
-                <label>
-                    Email:
-                    <input type="email" name="email" />
-                </label>
-                <button type="submit">Submit</button>
-                </form>
-
         </div>
     )
 }
