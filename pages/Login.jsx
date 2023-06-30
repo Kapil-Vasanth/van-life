@@ -33,21 +33,6 @@ export default function Login() {
     const message = useLoaderData()
     const navigation = useNavigation()
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-      
-        const myForm = event.target;
-        const formData = new FormData(myForm);
-      formData.append("dkd","dabbaguy")
-        fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(formData).toString(),
-        })
-          .then(() => navigate("/thank-you/"))
-          .catch((error) => alert(error));
-      };
-
     return (
         <div className="login-container">
             <h1>Sign in to your account</h1>
@@ -79,19 +64,18 @@ export default function Login() {
                 </button>
             </Form>
 
-            <form
-                data-netlify="true"
-                name="pizzaOrder"
-                method="post"
-                onSubmit={handleSubmit}
-            >
-                <input type="hidden" name="form-name" value="pizzaOrder" />
+            <form name="myForm" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="myForm" />
                 <label>
-                What order did the pizza give to the pineapple?
-                {/* <input name="order" type="text" onChange={handleChange} /> */}
+                    Name:
+                    <input type="text" name="name" />
                 </label>
-                <input type="submit" />
-            </form>
+                <label>
+                    Email:
+                    <input type="email" name="email" />
+                </label>
+                <button type="submit">Submit</button>
+                </form>
 
         </div>
     )
