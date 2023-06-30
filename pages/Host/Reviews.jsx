@@ -18,6 +18,13 @@ export default function Reviews() {
             text: "This is our third time using the Modest Explorer for our travels and we love it! No complaints, absolutely perfect!",
             id: "2",
         },
+        {
+            rating: 5,
+            name: "Sandy",
+            date: "December 12, 2022",
+            text: "This is our third time using the Modest Explorer for our travels and we love it! No complaints, absolutely perfect!",
+            id: "2",
+        },
     ]
     
     return (

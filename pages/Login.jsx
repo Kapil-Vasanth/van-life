@@ -63,6 +63,14 @@ export default function Login() {
                     }
                 </button>
             </Form>
+
+
+            <form action="" netlify >
+                    name<input type="text" />
+                    email<input type="text" />
+                    <button>asfsdf</button>
+
+            </form>
         </div>
     )
 }

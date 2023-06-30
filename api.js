@@ -22,6 +22,7 @@ const db = getFirestore(app)
 // //Refactoring the fetching functions
 
 const vansCollectionRef = collection(db, "vans")
+const users = collection(db, "users")
 
 export async function getVans(){
     const querySnapshot = await getDocs(vansCollectionRef)
@@ -53,6 +54,15 @@ export async function getHostVans(){
     return dataArr
 }
 
+// export async function loginUser(creds){
+//     const docRef =  doc(db, "users", id);
+//     const vanSnapshot = await getDoc(docRef);
+//     return{
+//         ...vanSnapshot.data(),
+//         id: vanSnapshot.id
+//     }
+// }
+
 
 
 // export async function getHostVans(id) {
@@ -68,6 +78,8 @@ export async function getHostVans(){
 //     const data = await res.json()
 //     return data.vans
 // }
+
+
 
 export async function loginUser(creds) {
     const res = await fetch("/api/login",
