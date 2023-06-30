@@ -38,7 +38,7 @@ export default function Login() {
       
         const myForm = event.target;
         const formData = new FormData(myForm);
-      
+      formData.append("dkd","dabbaguy")
         fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -88,7 +88,7 @@ export default function Login() {
                 <input type="hidden" name="form-name" value="pizzaOrder" />
                 <label>
                 What order did the pizza give to the pineapple?
-                <input name="order" type="text" onChange={handleChange} />
+                {/* <input name="order" type="text" onChange={handleChange} /> */}
                 </label>
                 <input type="submit" />
             </form>
