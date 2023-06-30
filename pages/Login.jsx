@@ -33,6 +33,21 @@ export default function Login() {
     const message = useLoaderData()
     const navigation = useNavigation()
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+      
+        const myForm = event.target;
+        const formData = new FormData(myForm);
+      
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString(),
+        })
+          .then(() => navigate("/thank-you/"))
+          .catch((error) => alert(error));
+      };
+
     return (
         <div className="login-container">
             <h1>Sign in to your account</h1>
@@ -64,27 +79,19 @@ export default function Login() {
                 </button>
             </Form>
 
-
-            <form name="contact" method="POST" data-netlify="true">
-  <p>
-    <label>Your Name: <input type="text" name="name" /></label>
-  </p>
-  <p>
-    <label>Your Email: <input type="email" name="email" /></label>
-  </p>
-  <p>
-    <label>Your Role: <select name="role[]" multiple>
-      <option value="leader">Leader</option>
-      <option value="follower">Follower</option>
-    </select></label>
-  </p>
-  <p>
-    <label>Message: <textarea name="message"></textarea></label>
-  </p>
-  <p>
-    <button type="submit">Send</button>
-  </p>
-</form>
+            <form
+                data-netlify="true"
+                name="pizzaOrder"
+                method="post"
+                onSubmit={handleSubmit}
+            >
+                <input type="hidden" name="form-name" value="pizzaOrder" />
+                <label>
+                What order did the pizza give to the pineapple?
+                <input name="order" type="text" onChange={handleChange} />
+                </label>
+                <input type="submit" />
+            </form>
 
         </div>
     )
