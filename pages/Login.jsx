@@ -36,6 +36,7 @@ export default function Login() {
     return (
         <div className="login-container">
             <h1>Sign in to your account</h1>
+            <p style={{color:"#797979"}}>Tyr Username as guest@com and password as guest987</p>
             {message && <h3 className="red">{message}</h3>}
             {errorMessage && <h3 className="red">{errorMessage}</h3>}
 

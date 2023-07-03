@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore,collection, getDocs, doc, getDoc, query, where } from "firebase/firestore/lite"
+import { getFirestore,collection, getDocs, doc, getDoc, query, where, and} from "firebase/firestore/lite"
 // // TODO: Add SDKs for Firebase products that you want to use
 // // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -54,14 +54,27 @@ export async function getHostVans(){
     return dataArr
 }
 
-// export async function loginUser(creds){
-//     const docRef =  doc(db, "users", id);
-//     const vanSnapshot = await getDoc(docRef);
-//     return{
-//         ...vanSnapshot.data(),
-//         id: vanSnapshot.id
-//     }
-// }
+export async function loginUser(creds){
+    const {email,password} = creds
+    const q =  query(users, 
+            and(
+                where("email","==",email),
+                where("password","==",password)
+            )
+        )
+    const querySnapshot = await getDocs(q)
+    const dataArr = await querySnapshot.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id
+    }))
+
+    const emojis = ['😭','😢','😔','😥','😓']
+    if(dataArr.length < 1){
+        throw Error(`There is no Such User or Password ${emojis[Math.floor(Math.random()*emojis.length + 1)]}`)
+    }
+    
+    return dataArr
+}
 
 
 
@@ -81,19 +94,19 @@ export async function getHostVans(){
 
 
 
-export async function loginUser(creds) {
-    const res = await fetch("/api/login",
-        { method: "post", body: JSON.stringify(creds) }
-    )
-    const data = await res.json()
+// export async function loginUser(creds) {
+//     const res = await fetch("/api/login",
+//         { method: "post", body: JSON.stringify(creds) }
+//     )
+//     const data = await res.json()
 
-    if (!res.ok) {
-        throw {
-            message: data.message,
-            statusText: res.statusText,
-            status: res.status
-        }
-    }
-
-    return data
-}
+//     if (!res.ok) {
+//         throw {
+//             message: data.message,
+//             statusText: res.statusText,
+//             status: res.status
+//         }
+//     }
+//     console.log(data)
+//     return data
+// }
